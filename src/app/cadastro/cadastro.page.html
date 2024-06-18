@@ -1,0 +1,182 @@
+<ion-header class="ion-no-border" [translucent]="true" mode="md">
+    <ion-toolbar>
+        <ion-buttons slot="start">
+            <ion-button color="primary" routerLink="/login" routerDirection="back">
+                <ion-icon slot="icon-only" name="arrow-back"></ion-icon>
+            </ion-button>
+        </ion-buttons>
+        <ion-title color="primary">Cadastre-se</ion-title>
+    </ion-toolbar>
+</ion-header>
+
+<ion-content>
+    <!-- Perfil -->
+    <!-- <ion-item-divider mode="md" lines="inset" class="sl-divider">
+  <ion-label>
+    Vamos começar, selecione e preencha.
+  </ion-label>
+</ion-item-divider> -->
+    <div class="sl-form ion-padding">
+        <div class="sl-containerAvatar">
+            <ion-avatar>
+                <img *ngIf="verFoto === ''" class="foto-img"
+                    src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y">
+                <img *ngIf="verFoto !== ''" class="foto-img" [src]="verFoto">
+                <ion-badge (click)="fotoPerfil()" color="primary" class="sl-camera" fill="clear">
+                    <ion-icon color="light" name="camera"></ion-icon>
+                </ion-badge>
+            </ion-avatar>
+        </div>
+    </div>
+    <!-- <div class="sl-form ion-padding">
+        <ion-label class="">Selecione sua profissão</ion-label>
+        <ion-toolbar>
+            <ion-segment [(ngModel)]="profissao" mode="ios">
+                <ion-segment-button value="Profissional em Enfermagem">
+                    <ion-icon size="small" name="medkit"></ion-icon>
+                    <ion-label>
+                        Profissional em Enfermagem
+                    </ion-label>
+                </ion-segment-button>
+
+                <ion-segment-button value="Cuidador de idoso">
+                    <ion-icon size="small" name="fitness"></ion-icon>
+                    <ion-label>
+                        Cuidador de idosos
+                    </ion-label>
+                </ion-segment-button>
+            </ion-segment>
+        </ion-toolbar>
+    </div> -->
+
+    <div class="sl-form ion-padding">
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-input autocapitalize="on" [(ngModel)]="nameUser" type="text"
+                placeholder="Nome e Sobrenome"></ion-input>
+        </ion-item>
+        <!-- <ion-item lines="none" class="ion-margin-bottom">
+            <ion-input [(ngModel)]="cpf" [brmasker]="{person: true}" type="text"
+                placeholder="Digite seu CPF "></ion-input>
+        </ion-item> -->
+        <!-- <ion-item lines="none" class="ion-margin-bottom">
+            <ion-input [(ngModel)]="coren"  type="text"
+                placeholder="Digite seu Coren "></ion-input>
+        </ion-item> -->
+        <!-- <ion-item lines="none" class="ion-margin-bottom">
+            <ion-input style="text-transform: uppercase;" maxlength="2" [(ngModel)]="corenUF"  type="text"
+                placeholder="UF do Seu Coren"></ion-input>
+        </ion-item> -->
+        <ion-item lines="none" class="ion-text-wrap ion-margin-bottom" detail="false">
+            <ion-select [(ngModel)]="profissao" label-placement="stacked" interface="popover" label="Selecione sua profissao" placeholder="Selecione">
+              <ion-select-option value="Técnica de Enfermagem">
+                Técnica de Enfermagem
+              </ion-select-option>
+              <ion-select-option value="Enfermeira(o)">
+                Enfermeira(o)
+              </ion-select-option>
+              <ion-select-option value="Cuidador de idoso(a)">
+                Cuidador de idoso(a)
+              </ion-select-option>
+            </ion-select>
+          </ion-item>
+        
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-textarea [(ngModel)]="descricao"  type="text"
+                placeholder="Comente sobre você "></ion-textarea>
+        </ion-item>
+        <ion-item lines="none" class="ion-margin-bottom">
+            <ion-input [(ngModel)]="telefone" type="text"
+                placeholder="Contato: (91) 99999-9999"></ion-input>
+        </ion-item>
+        <!-- <ion-select  interface="popover" placeholder="Selecione sua Chave Pix">
+            <ion-select-option value="apples">CPF</ion-select-option>
+            <ion-select-option value="oranges">Telefone</ion-select-option>
+            <ion-select-option value="bananas">Chave Aleatória</ion-select-option>
+          </ion-select> -->
+        <!-- <ion-accordion-group>
+            <ion-accordion value="first">
+                <ion-item class="item-acc ion-margin-bottom" slot="header" color="light">
+                    <ion-label>Informe sua Chave Pix</ion-label>
+                </ion-item>
+                <div class="ion-padding" slot="content">
+
+                    <ion-radio-group [(ngModel)]="chavePixEscolhida">
+                        <ion-item class="margin-bottom-10" lines="none">
+                            <ion-radio value="Email" justify="space-between">
+                                <ion-label>
+                                    Email
+                                </ion-label>
+                                <ion-note color="medium">
+                                    Vamos ultilizar o email da conta
+                                </ion-note>
+                            </ion-radio>
+
+                        </ion-item>
+                        <ion-item class="margin-bottom-10" lines="none">
+                            <ion-radio value="CPF/CNPJ" justify="space-between">
+                                <ion-label>
+                                    CPF
+                                </ion-label>
+                                <ion-note color="medium">
+                                    Vamos ultilizar o CPF da conta
+                                </ion-note>
+                            </ion-radio>
+                        </ion-item>
+                        <ion-item class="margin-bottom-10" lines="none">
+                            <ion-radio value="Telefone" justify="space-between">
+                                <ion-label>
+                                    Telefone
+                                </ion-label>
+                                <ion-note color="medium">
+                                    Vamos ultilizar o Telefone da conta
+                                </ion-note>
+                            </ion-radio>
+                        </ion-item>
+                        <ion-item lines="none">
+                            <ion-radio value="Chave" justify="space-between">Chave Aleatória</ion-radio>
+                        </ion-item>
+                    </ion-radio-group>
+                </div>
+            </ion-accordion>
+        </ion-accordion-group>
+        <ion-item *ngIf="chavePixEscolhida === 'Chave'" lines="none" class="ion-margin-bottom">
+            <ion-input [(ngModel)]="chavePix" type="text" placeholder="Digite Chave aleátoria aqui"></ion-input>
+        </ion-item> -->
+
+    </div>
+    <div class="sl-form ion-padding">
+        <form [formGroup]="signupform" novalidate>
+            <ion-item lines="none" class="ion-margin-bottom">
+                <ion-input formControlName="useremail" type="email" placeholder="Informe seu e-mail"></ion-input>
+            </ion-item>
+            <ion-item lines="none" class="ion-margin-bottom">
+                <ion-input placeholder="Informe sua senha" [type]="mostrarSenha ?
+      'password' : 'text'" formControlName="userpass" required></ion-input>
+                <ion-icon color="primary" [name]="mostrarSenha ? 'eye-outline' :
+      'eye-off-outline'" class="go-senha" slot="end" (click)="mostrarSenha=
+      !mostrarSenha"> </ion-icon>
+            </ion-item>
+        </form>
+    </div>
+
+    <p>Clicando em cadastrar você concorda com <br />nossos
+        <a>
+            Termos de uso
+        </a> e
+        <a>
+            Politicas de Privacidade.
+        </a>
+    </p>
+    <div class="sl-finish ion-padding">
+        <ion-button [disabled]="!signupform.valid || button" (click)="doSignup()" class="sl-signUP" color="primary"
+            expand="block" shape="round">
+            <ion-label color="light">
+                Cadastrar
+            </ion-label>
+            <div style="margin-left: 10px;" *ngIf="button">
+                <ion-spinner color="light" name="crescent"></ion-spinner>
+            </div>
+        </ion-button>
+    </div>
+
+</ion-content>

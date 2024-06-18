@@ -1,0 +1,59 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar color="primary">
+    <ion-title color="light">Minhas Informações</ion-title>
+    <ion-buttons slot="start">
+      <ion-button routerLink="/tabs/tab4" routerDirection="back">
+        <ion-icon color="light" slot="icon-only" name="chevron-back"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <div class="sl-containerAvatar">
+    <ion-avatar>
+      <img *ngIf="meuUsuario?.fotoPerfil === ''" src="https://gravatar.com/avatar/dba6bae8c566f9d4041fb9cd9ada7741?d=identicon&f=y" />
+      <img *ngIf="meuUsuario?.fotoPerfil !== ''" [src]="meuUsuario?.fotoPerfil" />
+      <ion-badge color="primary" class="sl-camera" fill="clear">
+        <ion-icon  color="light" name="camera"></ion-icon>
+      </ion-badge>
+    </ion-avatar>
+  </div>
+  <div class="sl-form ion-padding">
+
+    <ion-item  lines="none" detail="false"   lines="none" class="ion-margin-bottom">
+      <!-- <ion-label position="stacked">Nome e Sobrenome</ion-label>
+      <ion-input autocapitalize="on" [(ngModel)]="meuUsuario.nomeUser" type="text" placeholder="Nome responsável"></ion-input> -->
+      <ion-input type="text" clearInput="true"  class="custom" label="Nome e Sobrenome"
+      label-placement="stacked" [(ngModel)]="meuUsuario.nomeUser" fill="clear">
+    </ion-input>
+    </ion-item>
+       <!-- <ion-item mode="ios" lines="none" detail="false"  class="ion-margin-bottom">
+      <ion-label position="stacked">Email  </ion-label>
+      <ion-input autocapitalize="on" disabled="true" [(ngModel)]="meuUsuario.email" type="text" placeholder="Nome responsável"></ion-input>
+      </ion-item>
+    <ion-item  lines="none" detail="false" mode="ios" lines="none" class="ion-margin-bottom">
+      <ion-label position="stacked">Seu CPF </ion-label>
+      <ion-input [(ngModel)]="meuUsuario.cpfUser" [brmasker]="{person: true}" type="text" placeholder="Digite seu CPF "></ion-input>
+  </ion-item> -->
+    <ion-item lines="none" detail="false"  class="ion-margin-bottom">
+      <!-- <ion-label position="stacked">Telefone </ion-label>
+      <ion-input  [(ngModel)]="meuUsuario.telefone" [brmasker]="{phone: true}" type="text" placeholder="Contato: (91) 99999-9999"></ion-input> -->
+      <ion-input clearInput="true"  class="custom" label="Contato"
+      label-placement="stacked" [(ngModel)]="meuUsuario.telefone" type="text"  fill="clear">
+        </ion-input>
+    </ion-item>
+  </div>
+</ion-content>
+<ion-footer>
+  <ion-toolbar mode="ios" class="ion-no-border">
+    <ion-button (click)="atualizarPerfil()" [disabled]="button" mode="ios" color="primary" class="sl-finish">
+     <ion-label color="light">
+       Atualizar Cadastro
+      </ion-label>
+      <div style="margin-left: 10px;" *ngIf="button">
+        <ion-spinner color="light" name="crescent"></ion-spinner>
+    </div>
+    </ion-button>
+  </ion-toolbar>
+</ion-footer>

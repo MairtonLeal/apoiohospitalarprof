@@ -1,0 +1,83 @@
+.default-top-padding {
+  padding-top: 26px !important;
+}
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 42px 26px 16px 26px;
+
+  h2 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: bold;
+    color: #364f6b;
+  }
+
+  p {
+    margin: 0;
+    font-size: 14px;
+    color: var(--ion-color-primary);
+  }
+}
+
+.sl-list {
+  background: transparent;
+
+  ion-item {
+    padding: 10px;
+    --background: #f1f5f8;
+  }
+}
+
+ion-content {
+  --background: #f1f5f8;
+}
+
+.category {
+  // margin-top: 15px;
+  color: white;
+  padding: 5px 25px 5px 25px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: bold;
+  background-color: var(--ion-color-primary);
+  box-shadow: -1px 11px 13px -6px var(--ion-color-primary);
+  margin: 5px;
+  p {
+    font-size: 10px;
+  }
+}
+
+.faq-v {
+  ion-list {
+    border-radius: 8px;
+    margin-bottom: 30px;
+    background: #f1f5f8;
+  }
+  ion-list-header {
+    font-size: 16px;
+    margin-bottom: 10px;
+  }
+
+  ion-label {
+    font-size: 14px;
+    text-align: center;
+    color: white;
+  }
+
+  ion-text {
+    font-size: 14px;
+    margin: 5px;
+  }
+
+  ion-item {
+    margin: 5px;
+    font-size: 12px;
+    // text-align: center;
+    --background: #f1f5f8;
+  }
+  ion-list-header {
+    --background: #f1f5f8;
+  }
+}

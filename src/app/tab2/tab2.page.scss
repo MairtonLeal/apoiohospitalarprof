@@ -1,0 +1,167 @@
+.header {
+  --background: #f1f5f8;
+  ion-title {
+      font-size: 18px;
+      color: var(--ion-color-primary);
+  }
+}
+
+.default-top-padding {
+  padding-top: 26px !important;
+}
+
+.title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 42px 26px 16px 26px;
+  h2 {
+      margin: 0;
+      font-size: 20px;
+      font-weight: bold;
+      color: #434343;
+  }
+  p {
+      margin: 0;
+      font-size: 14px;
+      color: var(--ion-color-light);
+  }
+}
+
+
+.sl-optButton {
+  text-transform: none;
+  --border-radius: 30px;
+  height: 40px;
+  width: 100px;
+}
+
+.sl-valor {
+  font-size: 18px;
+  display: flex;
+  justify-content: flex-end;
+}
+
+.backbtn {
+  margin-left: 15px;
+}
+
+.notification {
+  margin-right: 15px;
+}
+
+ion-content {
+  // --padding-top: 16px;
+  // --padding-bottom: 16px;
+  // --padding-start: 20px;
+  // --padding-end: 20px;
+  --background: #f1f5f8;
+}
+
+.title {
+  margin-top: 0;
+  color: #434343;
+}
+
+.atendimento-prof{
+  border-radius: 14px;
+  padding-bottom: 0;
+  ion-chip{
+    border-radius: 10px;
+  }
+  ion-card-header{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px;
+  }
+  ion-card-content{
+    padding: 5px;
+  }
+}
+
+.sub-title2 {
+  padding-top: 16px;
+  // display: flex;
+  // align-items: center;
+  text-align: center;
+  strong {
+    font-size: 18px;
+    color: var(--ion-color-primary);
+  }
+}
+
+.img-empty{
+  object-fit: contain;
+  height: 100px;
+  width: 100px;
+}
+
+.info-header {
+  display: flex;
+  align-items: center;
+  padding: 0;
+  margin: 5px;
+}
+.card-info {
+  box-shadow: none;
+  // margin-left: 0;
+  // margin-right: 0;
+}
+.img-aviso {
+  height: 80px;
+  width: 80px;
+  object-fit: contain;
+}
+
+
+.button-opacity{
+  // --background: var(--ion-color-primary);
+  --box-shadow: none;
+  --border-radius:10px;
+  margin: 0;
+  display: flex;
+ //  width: 160px;
+  position: relative;
+ }
+
+
+ .prof-value {
+  height: 70px;
+  width: 120px;
+}
+
+.card-estadia{
+  border-radius: 8px;
+  box-shadow: none;
+}
+
+.button-option-clear{
+  text-transform: none;
+  width: 200px;
+  box-shadow: none;
+  ion-label{
+    font-weight: 600;
+    font-size: 12px; 
+  }
+  ion-chip{
+    border-radius: 8px;
+  }
+}
+
+.button-selected{
+  text-transform: none;
+  box-shadow: none;
+  ion-label{
+    font-weight: 600;
+    font-size: 12px; 
+  }
+  ion-chip{
+    --background: var(--ion-color-primary);
+    border-radius: 8px;
+    width: 205px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+}

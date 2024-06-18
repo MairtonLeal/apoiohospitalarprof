@@ -1,17 +1,234 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
+<ion-header mode="ios" class="ion-no-border">
+  <ion-toolbar class="header">
+    <ion-button mode="md" slot="end" (click)="atualizarPagina()" fill="clear">
+      <ion-icon size="large" color="primary" name="refresh-circle"></ion-icon>
+    </ion-button>
     <ion-title>
-      Tab 3
+      Recibos
     </ion-title>
   </ion-toolbar>
 </ion-header>
+<ion-content>
+  <ion-card class="card-alert">
+    <ion-card-header>
+      <div>
+        <ion-icon size="large" color="primary" name="wallet"></ion-icon>
+      </div>
+    </ion-card-header>
+    <ion-card-content>
+      <ion-label class="descricao-card-alert">
+        Acompanhe seus pagamentos pelos serviços
+      </ion-label>
+    </ion-card-content>
+  </ion-card>
+  <div *ngIf="carregando" style="display: flex; justify-content: center;
+    margin-top: 30px;">
+    <ion-label style="text-align: center;" color="primary">
+      Carregando... <br />
+      <ion-spinner color="primary" name="crescent"></ion-spinner>
+    </ion-label>
+  </div>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">Tab 3</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <div *ngIf="!carregando">
+      <div *ngIf="!carregando">
+      <!-- <div class="sub-title2">
+        <ion-card-title>
+          <strong>
+            Faturas de atendimento e serviços
+          </strong>
+        </ion-card-title>
+      </div> -->
+      <!-- <div *ngFor="let fatura of minhasFaturas" class="item-transactions">
+        <div class="transactions">
+          <ion-card *ngIf="fatura?.status === 'PAGO'" class="transaction in">
+            <ion-icon name="arrow-up-outline" slot="start"></ion-icon>
+            <div class="info">
+              <div class="category">
+                {{fatura?.tipoCuidado}}
+              </div>
+              <div class="name">
+                {{fatura?.faturaServico}}
+              </div>
+            </div>
+            <div class="amount">
+              <div class="date">
+                {{fatura?.vencimento}}
+              </div>
+              <div class="value">
+                {{fatura?.valor | currency: 'BRL'}}
+              </div>
+            </div>
+          </ion-card>
+          <ion-card button (click)="mostraPagar()" *ngIf="fatura?.status === 'PAGAR'" class="transaction alert">
+            <div>
+            <ion-icon name="information-circle-outline" slot="start"></ion-icon>
+            <div class="info">
+              <div class="category">
+                {{fatura?.faturaServico}}
+              </div>
+              <div class="name">
+                {{fatura?.categoria}}
+              </div>
+            </div>
+            <div class="amount">
+              <div class="date">
+                {{fatura?.vencimento}}
+              </div>
+              <div class="value">
+              Valor: {{fatura?.valor | currency: 'BRL'}}
+              </div>
+            </div>
+          </div>
+          </ion-card>
+        </div>
+      </div> -->
+      <!-- <div class="flex-between"> -->
+        <ion-card class="recibo">
+          <div class="card-info div-padding">
+           <div class="square-icon">
+            <ion-icon color="light" name="medkit"></ion-icon>
+           </div>
+            <ion-label>
+              <p>
+                Aguardando Pagamento 
+              </p>
+              <strong>
+                Valor a receber: R$ 30,00
+              </strong>
+            </ion-label>
+          </div>
+          <ion-card-content>
+            <ion-text>
+              Serviço Realizado: troca de curativo
+              <br />
+              Realizado em:
+              <br />
+              Paciente:
+            </ion-text>
+          </ion-card-content>
 
-  <app-explore-container name="Tab 3 page"></app-explore-container>
-</ion-content>
+          <div class="div-padding">
+            <ion-chip color="primary" class="light">
+              <ion-icon color="primary" name="medkit"></ion-icon>
+              <ion-label>
+                Status: Enviado para pagamento
+              </ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+
+        <ion-card class="recibo">
+          <div class="card-info div-padding">
+           <div class="square-icon-2">
+            <ion-icon color="light" name="receipt"></ion-icon>
+           </div>
+            <ion-label>
+              <p>
+                Processando Pagamento
+              </p>
+              <strong>
+                Valor a receber: R$ 30,00
+              </strong>
+            </ion-label>
+          </div>
+          <ion-card-content>
+            <ion-text>
+              Serviço Realizado: troca de curativo
+              <br />
+              Realizado em:
+              <br />
+              Paciente:
+            </ion-text>
+          </ion-card-content>
+
+          <div class="div-padding">
+            <ion-chip color="warning" class="light">
+              <ion-icon color="warning" name="ticket"></ion-icon>
+              <ion-label>
+                Status: Processando pagamento
+              </ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+
+
+        <ion-card class="recibo">
+          <div class="card-info div-padding">
+           <div class="square-icon-3">
+            <ion-icon color="light" name="checkbox"></ion-icon>
+           </div>
+            <ion-label>
+              <p>
+                Pagamento Concluido
+              </p>
+              <strong>
+               Valor: R$ 30,00
+              </strong>
+            </ion-label>
+          </div>
+          <ion-card-content>
+            <ion-text>
+              Serviço Realizado: troca de curativo
+              <br />
+              Realizado em:
+              <br />
+              Paciente:
+            </ion-text>
+          </ion-card-content>
+
+          <div class="div-padding">
+            <ion-chip color="success" class="light">
+              <ion-icon color="success" name="ticket"></ion-icon>
+              <ion-label>
+                Status: Enviado para sua conta pix
+              </ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+        <ion-card class="recibo">
+          <div class="card-info div-padding">
+           <div class="square-icon-4">
+            <ion-icon color="light" name="checkbox"></ion-icon>
+           </div>
+            <ion-label>
+              <p>
+                Pagamento Cancelado
+              </p>
+              <strong>
+               Valor a receber: R$ 30,00
+              </strong>
+            </ion-label>
+          </div>
+          <ion-card-content>
+            <ion-text>
+              Serviço Realizado: troca de curativo
+              <br />
+              Realizado em:
+              <br />
+              Paciente:
+              <br />
+              <strong>
+              Tivemos um problema ao realizar pagamento entre em contato
+              motivo:
+              </strong>
+            </ion-text>
+          </ion-card-content>
+
+          <div class="div-padding">
+            <ion-chip color="danger" class="light">
+              <ion-icon color="danger" name="ticket"></ion-icon>
+              <ion-label>
+                Status: Envio Interrompido
+              </ion-label>
+            </ion-chip>
+          </div>
+        </ion-card>
+
+
+      <!-- </div> -->
+      </div>
+    </div>
+
+
+
+  </ion-content>
