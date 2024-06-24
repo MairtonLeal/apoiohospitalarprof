@@ -94,6 +94,7 @@ export class LoginPage implements OnInit {
         });
       
     } catch (error: any) {
+      this.button = false;
       switch (error.code) {
         case 'auth/wrong-password':
           this.toastservice.showToast(
@@ -101,7 +102,7 @@ export class LoginPage implements OnInit {
             2000,
             'danger'
           );
-          this.button = false;
+          
           break;
         case 'auth/user-not-found':
           this.button = false;

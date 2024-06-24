@@ -1,5 +1,7 @@
 {
   "name": "apoiohospitalarprof",
-  "integrations": {},
+  "integrations": {
+    "capacitor": {}
+  },
   "type": "angular"
 }

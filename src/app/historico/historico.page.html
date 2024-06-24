@@ -37,7 +37,8 @@
               <ion-card-subtitle *ngIf="estadia?.status === 'Arquivado' " color="light">
                 Estadia Concluida
               </ion-card-subtitle>
-              <ion-card-subtitle *ngIf="estadia?.status === 'Cancelado'" color="light">
+              <ion-card-subtitle *ngIf="estadia?.status === 'Cancelado' || estadia?.status
+              === 'Arquivado'" color="light">
                 Estadia Cancelada
               </ion-card-subtitle>
            

@@ -273,33 +273,20 @@ export class ServiceDetailPage implements OnInit {
             //  deletar atendimento e salvar no historico
             this.fbstore
               .doc(`Estadia/${this.estadiaId}`)
-              .delete().then(() => {
-                let historicoId = this.dataHistorico + this.usuarioId;
+              .update({
+                statusEstadia: 'Cancelado',
+              }).then(() => {
                 this.toastController.showToast(
                   'Sua Estadia foi cancelada!',
                   1000,
                   'success'
                 );
-                this.fbstore
-                  .doc(`Historico/${historicoId}`)
-                  .set({
-                    dadosDaEstadia: estadiaDados,
-                    statusEstadia: status,
-                    dataCancelamento: this.dateToday,
-                  })
-                  .then(() => {
-
-                    this.toastController.showToast(
-                      'Estadia cancelado com sucesso',
-                      3000,
-                      'success'
-                    );
-                    this.oneSignalAdmin.sendMessage(
-                      'Estadia Cancelado',
-                      `Sentimos muito, seu serviço foi cancelado`,
-                      this.idoso.playerId
-                    );
-                  })
+                this.oneSignalAdmin.sendMessage(
+                  'Estadia Cancelado',
+                  `Sentimos muito, seu serviço foi cancelado`,
+                  this.idoso.playerId
+                );
+               
               })
               .catch((error) => {
                 this.fechar();

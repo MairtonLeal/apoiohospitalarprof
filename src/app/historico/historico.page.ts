@@ -36,9 +36,8 @@ export class HistoricoPage {
 
   ionViewWillEnter() {
     this.usuarioId = localStorage.getItem(Keys.userProf);
-    this.getServicos();
-    // this.getFaturas();
-    this.getHistoricoAtendimentos();
+    this.getEstadias();
+  
   }
 
   // codigo para atualizar paginas
@@ -51,51 +50,7 @@ export class HistoricoPage {
     }, 2000);
   }
 
-  getServicos() {
-    this.carregando = true;
-    // Traz dados do serviço
-    this.fbstore
-      .collection(`Servico`, (ref) =>
-        ref.where('historico', '==', true)
-        // ref.orderBy('criadoEm', 'asc')
-      )
-      .snapshotChanges()
-      .subscribe((data: any) => {
-        this.servicos = data.map((listaServicos: any) => {
-          this.meuServico = listaServicos.payload.doc.data();
-          this.carregando = false;
-          if (
-            listaServicos.payload.doc.data().idProfissional ===
-              this.usuarioId &&
-            listaServicos.payload.doc.data().historico === true
-          ) {
-            // console.log(this.meuServico);
-            this.getIdosoById(listaServicos.payload.doc.data().idCliente);
-            return {
-              idCliente: listaServicos.payload.doc.data().idCliente,
-              idProfissional: listaServicos.payload.doc.data().idProfissional,
-              dataHora: listaServicos.payload.doc.data().dataEHora,
-              procedimento: listaServicos.payload.doc.data().tipoServico,
-              nome: listaServicos.payload.doc.data().nomeProfissional,
-              foto: listaServicos.payload.doc.data().fotoProfissional,
-              profissao: listaServicos.payload.doc.data().profissao,
-              status: listaServicos.payload.doc.data().status,
-              formaPagamento: listaServicos.payload.doc.data().formaPagamento,
-              valor: listaServicos.payload.doc.data().valorServico,
-              endereco: listaServicos.payload.doc.data().endereco,
-              historico: listaServicos.payload.doc.data().historico,
-            };
-          } else {
-            return null;
-          }
-        });
-        of(data)
-          .pipe(delay(1500))
-          .subscribe(() => {
-            this.carregando = false;
-          });
-      });
-  }
+ 
 
   getIdosoById(idosoId: any) {
     // Firestore pegando por id
@@ -122,80 +77,11 @@ export class HistoricoPage {
 
   async carregar() {
     if (this.tipoItem === 'historico') {
-      this.getServicos();
+      this.getEstadias();
     }
   }
 
-  async getFaturas() {
-    this.fbstore
-      .collection(`Faturas`, (ref) =>
-      ref.orderBy('criadoEm', 'asc')
-      // ref.where('historico', '==', true)
-      )
-      .snapshotChanges()
-      .subscribe((data: any) => {
-        this.minhasFaturas = data.map((fatura: any) => {
-          this.carregando = false;
-          // if(this.usuarioId === listaServicos.payload.doc.data().sP) {
-          let vencimento = moment(fatura.payload.doc.data().realizadoEm)
-            .add(7, 'days')
-            .locale('pt-br')
-            .format('DD/MM/YYYY');
-          if (fatura.payload.doc.data().idProfissional === this.usuarioId) {
-            // console.log(fatura.payload.doc.data());
-            return {
-              faturaVencimento: fatura.payload.doc.data().vencimento,
-              faturaServico: fatura.payload.doc.data().tipoAtendimento,
-              faturaCuidado: fatura.payload.doc.data().cuidado,
-              status: fatura.payload.doc.data().status,
-              valor: fatura.payload.doc.data().valorFatura,
-              vencimento: vencimento,
-            };
-          } else {
-            return null;
-          }
-        });
-        of(data)
-          .pipe(delay(1500))
-          .subscribe(() => {
-            this.carregando = false;
-          });
-      });
-  }
-
-  async getHistoricoAtendimentos() {
-    this.fbstore
-      .collection(`Historico`)
-      .snapshotChanges()
-      .subscribe((data: any) => {
-        this.historicoAtendimentos = data.map((lista: any) => {
-          this.carregando = false;
-          // console.log(lista.payload.doc.data());
-          if (
-            lista.payload.doc.data().servico.idProfissional === this.usuarioId
-          ) {
-            return {
-              id: lista.payload.doc.id,
-              status: lista.payload.doc.data().status,
-              dataEHora: lista.payload.doc.data().servico.dataHora,
-              hora: lista.payload.doc.data().servico.hora,
-              cuidado: lista.payload.doc.data().servico.cuidadoAss,
-              tipo: lista.payload.doc.data().servico.tipo,
-              obs: lista.payload.doc.data().servico.obs,
-              valor: lista.payload.doc.data().servico.valorCuidado,
-              endereco: lista.payload.doc.data().servico.endereco,
-              foto: lista.payload.doc.data().servico.fotoProfissional,            };
-          } else {
-            return null;
-          }
-        });
-        of(data)
-          .pipe(delay(1500))
-          .subscribe(() => {
-            this.carregando = false;
-          });
-      });
-  }
+  
 
 
 

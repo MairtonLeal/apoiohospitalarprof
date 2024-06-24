@@ -140,13 +140,7 @@ export class CadastroPage implements OnInit {
         const email = this.signupform.get('useremail')?.value as string;
         const senha = this.signupform.get('userpass')?.value as string;
         this.button = true;
-        if (this.exibirFoto) {
-          const loading = await this.loadingController.create({
-            message: 'Cadastrando usuário ...',
-          });
-
-          loading.present();
-
+        if (this.verFoto) {
           await this.fbauth
             .createUserWithEmailAndPassword(email, senha)
             .then((data: any) => {
@@ -155,12 +149,10 @@ export class CadastroPage implements OnInit {
               });
               // novousuario.spId = data.user.uid;
               this.idDoc = data.user.uid;
-
-              this.idDoc = data.user.uid;
               // const randomId = Math.random().toString(36).substring(2);
               const ref = this.afStorage.ref(this.idDoc);
               const task = ref.put(
-                this.dataURItoBlob(this.exibirFoto)
+                this.dataURItoBlob(this.verFoto)
               );
               this.uploadProgress = task
                 .snapshotChanges()
@@ -203,15 +195,47 @@ export class CadastroPage implements OnInit {
 
             });
         } else {
-          this.toastservice.showToast(
-            'Erro ao Cadastrar, coloque a foto',
-            2000,
-            'danger'
-          );
-          this.button = false;
+       
+          await this.fbauth
+            .createUserWithEmailAndPassword(email, senha)
+            .then((data: any) => {
+              data.user.updateProfile({
+                displayName: this.nameUser,
+              });
+              // novousuario.spId = data.user.uid;
+              this.idDoc = data.user.uid;
+              this.fbstore
+              .collection('Profissionais')
+              .doc(this.idDoc)
+              .set({
+                profissao: this.profissao,
+                email: this.signupform.get('useremail')?.value,
+                telefone: this.telefone,
+                nomeUser: this.nameUser,
+                descricao: this.descricao,
+                fotoPerfil:'',
+                playerId: this.idSendUser
+              })
+              .then(() => {
+                this.router.navigate(['/login']);
+                this.button = false;
+                this.alertService.showToastSuccess("Cadastro Realizado com sucesso");
+                // this.alertService.basicAlert("Cadastro enviado","Aguarde seu email", "Retornaremos um email para acesso assim que possivel")
+                // localStorage.setItem(Keys.token, this.idDoc);
+              })
+              .catch(() => {
+                this.button = false;
+                this.toastservice.showToast(
+                  'Erro ao Cadastrar, tente novamente',
+                  2000,
+                  'danger'
+                );
+              })
+            });
         }
 
       } catch (error: any) {
+        this.button = false;
         switch (error.code) {
           case 'auth/invalid-email':
             this.toastservice.showToast('Email invalido', 2000, 'danger');
@@ -238,7 +262,7 @@ export class CadastroPage implements OnInit {
       })
       .then(
         (results) => {
-          this.exibirFoto = 'data:image/png;base64,' + results[0];
+          this.verFoto = 'data:image/png;base64,' + results[0];
           // const randomId = Math.random().toString(36).substring(2);
           // const ref = this.afStorage.ref(randomId);
           // const task = ref.put(

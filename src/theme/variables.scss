@@ -1,47 +1,20 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
 :root {
-    /** primary **/
-    // --ion-color-primary: #3880ff;
-    // --ion-color-primary-rgb: 56, 128, 255;
-    // --ion-color-primary-contrast: #ffffff;
-    // --ion-color-primary-contrast-rgb: 255, 255, 255;
-    // --ion-color-primary-shade: #3171e0;
-    // --ion-color-primary-tint: #4c8dff;
-
     --ion-font-family:  'Poppins', sans-serif;
 
-  /** primary **/
-  // --ion-color-primary: #D9A30C;
-  // --ion-color-primary-rgb: 217, 163, 12;
-  // --ion-color-primary-contrast: #000000;
-  // --ion-color-primary-contrast-rgb: 0, 0, 0;
-  // --ion-color-primary-shade: #bf8f0b;
-  // --ion-color-primary-tint: #ddac24;
-  /** primary  option**/
-  --ion-color-primary: #6e0ad6;
-  --ion-color-primary-rgb: 110, 10, 214;
-  --ion-color-primary-contrast: #ffffff;
-  --ion-color-primary-contrast-rgb: 255, 255, 255;
-  --ion-color-primary-shade: #6109bc;
-  --ion-color-primary-tint: #7d23da;
-
-  // --ion-color-primary: #3880ff;
-  // --ion-color-primary-rgb: 56,128,255;
-  // --ion-color-primary-contrast: #ffffff;
-  // --ion-color-primary-contrast-rgb: 255,255,255;
-  // --ion-color-primary-shade: #3171e0;
-  // --ion-color-primary-tint: #4c8dff;
-
-  // :root {
-  //   --ion-color-primary: #3dc2ff;
-  //   --ion-color-primary-rgb: 61,194,255;
-  //   --ion-color-primary-contrast: #000000;
-  //   --ion-color-primary-contrast-rgb: 0,0,0;
-  //   --ion-color-primary-shade: #36abe0;
-  //   --ion-color-primary-tint: #50c8ff;
-  // }
-
-
+    --ion-color-primary: #2f4a8a;
+    --ion-color-primary-rgb: 47,74,138;
+    --ion-color-primary-contrast: #ffffff;
+    --ion-color-primary-contrast-rgb: 255,255,255;
+    --ion-color-primary-shade: #294179;
+    --ion-color-primary-tint: #445c96;
+  
+      --ion-color-sl: #2f4a8a;
+    --ion-color-sl-rgb: 47,74,138;
+    --ion-color-sl-contrast: #ffffff;
+    --ion-color-sl-contrast-rgb: 255,255,255;
+    --ion-color-sl-shade: #294179;
+    --ion-color-sl-tint: #445c96;
   /** secondary **/
   --ion-color-secondary: #3dc2ff;
   --ion-color-secondary-rgb: 61, 194, 255;
